@@ -1,0 +1,227 @@
+body {
+  margin:0px;
+}
+
+/*
+div {
+  border:1px solid black;
+}
+*/
+
+#content {
+  margin-left:10px;
+  margin-right:10px;
+  margin-top:60px;
+  max-width:700px;
+}
+
+#minitoc {
+  display:none;
+}
+
+#control-panel {
+  position:fixed;
+  top:0px; left:0px; right:0px;
+  height:40px;
+  background-color:#FFFFFF;
+  overflow:hidden;
+  z-index:100;
+}
+#top-controls {
+  position:absolute;
+  bottom:0px; left:0px; right:0px;
+  height:40px;
+  border-top: 1px solid orange;
+  border-bottom:1px solid orange;
+}
+#top-controls-slider {
+  position:absolute;
+  margin:auto;
+  top:-10px; left:0; right:0; bottom:0;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  width:10px; height:10px;
+}
+
+#controls {
+  position:relative;
+}
+#control-find {
+  position:relative;
+  height:160px;
+  width:100%;
+}
+#control-find-content {
+  width:100%;
+  height:160px;
+}
+input#find {
+  border-radius:5px;
+  font-size:28px;
+  padding:10px 10px;
+  position:absolute;
+  margin:auto;
+  top:0px; left:0px; right:0px; bottom:0px;
+  font-family: Lato;
+  width:260px;
+}
+
+#control-toc {
+  position:relative;
+  height:400px;
+  overflow:hidden;
+  width:100%;
+}
+#control-toc-content {
+  position:absolute;
+  margin:auto;
+  top:0px; left:0px; right:0px; bottom:0px;
+  width:320px;
+  height:400px;
+  -webkit-box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+  -moz-box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+  box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+}
+
+#control-find-zen {
+  display:none;
+}
+#control-toc-zen {
+  display:none;
+}
+
+.controls-open {
+  border-right:2px solid orange;
+}
+
+/* Tablets portrait ----------- */
+@media only screen and (min-width : 600px) {
+  #content {
+    margin-left:160px;
+    margin-top:10px;
+  }
+  #top-controls {
+    display:none;
+  }
+  #control-panel {
+    width:140px;
+    height:100%;
+    min-height:400px;
+  }
+
+  #controls {
+    position:relative;
+    left:10px;
+    display:block;
+    height:100%;
+  }
+
+  #control-find {
+    position:relative;
+    height:160px;
+  }
+  #control-find-zen {
+    display:block;
+    position:relative;
+    height:160px;
+    background-color:#FFFFFF;
+    z-index:1000;
+  }
+  #zen-icon-find {
+    font-size:82px;
+    color:#cacaca;
+    position:absolute;
+    margin:auto;
+    top:0; left:0; right:0; bottom:0;
+    height:80px; width:80px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.1)
+  }
+  #control-find-content {
+    display:none;
+    position:absolute;
+    height:160px;
+    text-align:center;
+  }
+
+  #control-toc {
+    position:relative;
+    height:calc(100% - 160px);
+  }
+  #control-toc-zen {
+    display:block;
+    position:absolute;
+    top:0px; bottom:0px;
+    background-color:#FFFFFF;
+    width:100%;
+    z-index:1000;
+  }
+  #zen-icon-toc {
+    position:absolute;
+    margin:auto;
+    font-size:82px;
+    color:#cacaca;
+    top:0; left:0; right:0; bottom:80px;
+    height:80px; width:80px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.1)
+  }
+  #control-toc-content {
+    position:absolute;
+    margin:auto;
+    top:0; left:0; right:0px; bottom:80px;
+    -webkit-box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+    box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+    display:none;
+  }
+}
+
+/* Tablets landscape ----------- */
+@media only screen and (min-width : 1050px) {
+  #minitoc {
+    display:block;
+    position:fixed;
+    min-width:150px;
+    max-width:300px;
+    left:900px;
+    top:10px;
+  }
+}
+
+
+@media only screen and (min-width : 1280px) {
+  #content {
+    margin-left:280px;
+  }
+
+  #minitoc {
+    left:1030px;
+  }
+  #control-panel {
+    width:260px;
+  }
+  #controls {
+    position:relative;
+    left:10px;
+    display:block;
+    height:100%;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1450px) {
+  #content {
+    margin-left:460px;
+    min-width:300px;
+    max-width:700px;
+  }
+
+  #minitoc {
+    left:1200px;
+  }
+  #control-panel {
+    width:380px;
+  }
+}
+
+
+
+
