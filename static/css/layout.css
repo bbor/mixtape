@@ -21,7 +21,7 @@ div {
   top:0px; left:0px; right:0px;
   height:40px;
   background-color:#FFFFFF;
-  overflow:hidden;
+  /*overflow:hidden;*/
   z-index:100;
 }
 #top-controls {
@@ -52,13 +52,17 @@ div {
   width:100%;
   height:160px;
 }
+#find-form {
+  position:absolute;
+  margin:auto;
+  top:0px; left:0px; right:0px; bottom:0px;
+  width:260px;
+  max-height:40px;
+}
 input#find {
   border-radius:5px;
   font-size:28px;
   padding:10px 10px;
-  position:absolute;
-  margin:auto;
-  top:0px; left:0px; right:0px; bottom:0px;
   font-family: Lato;
   width:260px;
   max-height:40px;
@@ -79,6 +83,10 @@ input#find {
   -webkit-box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
   -moz-box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
   box-shadow: inset 0px 19px 18px -3px rgba(255,255,255,1);
+}
+#toc-form {
+  max-height:400px;
+  overflow:auto;
 }
 
 #control-find-zen {
@@ -123,7 +131,7 @@ input#find {
     position:relative;
     height:160px;
     background-color:#FFFFFF;
-    z-index:1000;
+    z-index:200;
   }
   #zen-icon-find {
     font-size:82px;
@@ -155,7 +163,7 @@ input#find {
     top:0px; bottom:0px;
     background-color:#FFFFFF;
     width:100%;
-    z-index:1000;
+    z-index:200;
   }
   #zen-icon-toc {
     position:absolute;

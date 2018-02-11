@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "clone": "^2.1.1",
+    "fast-filter": "^1.0.4",
     "fs-extra": "^5.0.0",
     "handlebars": "^4.0.11",
     "marked": "^0.3.12"

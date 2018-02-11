@@ -3,28 +3,23 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{{page-title}}</title>
-    <script src="{{relative-path-to-root}}js/jquery-3.3.1.min.js"></script>
-    <script src="{{relative-path-to-root}}js/jquery.hoverDelay.min.js"></script>
-    <script src="{{relative-path-to-root}}js/site-controls.js"></script>
-    <script src="{{relative-path-to-root}}js/prettify/prettify.js"></script>
-    {{#each code-languages}}
-    <script src="{{relative-path-to-root}}js/prettify/lang-{{@key}}.js"></script>
-    {{/each}}
-    <link rel="stylesheet" href="fonts/fonts.css">
-    <link rel="stylesheet" href="fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="{{relative-path-to-root}}css/layout.css">
-    <link rel="stylesheet" href="{{relative-path-to-root}}css/design.css">
+    <script data-main="js/setup" src="js/require.js"></script>
+    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="stylesheet" href="fonts/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/design.css" />
+    <link rel="stylesheet" href="toc/themes/default/style.min.css" />
   </head>
   <body>
 
   <div id="control-panel">
     <div id="controls">
       <div id="control-find">
-        <div id="control-find-content"><input id="find" placeholder="Find something..."></div>
+        <div id="control-find-content"><div id="find-form"><input id="find" class="typeahead" placeholder="Find something..."></div></div>
         <div id="control-find-zen"><div id="zen-icon-find" class="fas fa-crosshairs"></div></div>
       </div>
       <div id="control-toc">
-        <div id="control-toc-content"><img id="toc" src="{{relative-path-to-root}}images/toc.png"></div>
+        <div id="control-toc-content"><div id="toc-form"></div></div>
         <div id="control-toc-zen"><div id="zen-icon-toc" class="fas fa-bars"></div></div>
       </div>
     </div>
@@ -51,7 +46,7 @@
 
   <div class="footer">
     <p>Some footer text. Optional. Copyright &copy; whenever by your bidness.</p>
-    <p>Dubbed by <img src="{{relative-path-to-root}}images/mixtape.png" title="Dubbed by mixtape." style="width:40px;position:relative;top:8px"></img> mixtape.</p>
+    <p>Dubbed by <img src="images/mixtape.png" title="Dubbed by mixtape." style="width:40px;position:relative;top:8px"></img> mixtape.</p>
   </div>
   </div>
   </body>
