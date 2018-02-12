@@ -1,14 +1,14 @@
 requirejs.config({
   baseUrl: 'js',
   paths: {
-    typesearch: '../typesearch',
-    prettify: '../prettify',
+    livesearch: '../livesearch',
+    highlight: '../highlight',
     search: '../search',
     toc: '../toc',
     jquery: 'jquery-3.3.1.min',
     hoverDelay: 'jquery.hoverDelay.min',
-    typeahead: '../typesearch/typeahead.jquery.min',
-    bloodhound: '../typesearch/bloodhound.min',
+    typeahead: '../livesearch/typeahead.jquery.min',
+    bloodhound: '../livesearch/bloodhound.min',
     jstree: '../toc/jstree.min'
   },
   shim: {
@@ -17,6 +17,6 @@ requirejs.config({
   }
 });
 
-requirejs(['jquery', 'site-controls', 'prettify/setup', 'typesearch/setup', 'toc/setup'], function($) {
+requirejs(['jquery', 'site-controls', 'highlight/highlight-controls', 'livesearch/livesearch-controls', 'toc/toc-controls'], function($) {
   console.log('all initialized.');
 })

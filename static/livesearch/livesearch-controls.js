@@ -29,7 +29,7 @@ define(['jquery','typeahead','bloodhound'], function($) {
 
   // load the typeahead data and set up the handler on the text field.
   $(document).ready( function() {
-    require(['typesearch/data'], function(searchdata) {
+    require(['livesearch/data'], function(searchdata) {
       var searchdatatypes = Object.keys(searchdata);
       var bloodhounds = (function() {
         var list = {};

@@ -1,9 +1,9 @@
 
-define(['jquery','prettify/prettify'], function($) {
+define(['jquery','highlight/prettify'], function($) {
 
   var lang_files = {};
   $('code[class^=language-]').each(function() {
-    var lang = 'prettify/' + $(this).attr('class').replace('language','lang');
+    var lang = 'highlight/' + $(this).attr('class').replace('language','lang');
     lang_files[lang] = true;
   });
   $(document).ready( function() {

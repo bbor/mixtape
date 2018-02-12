@@ -83,7 +83,9 @@ define(['jquery', 'hoverDelay'], function($) {
     if (anchor && anchor != '#')
     {
       anchor = anchor.replace('#', '');
-      $('a[name=' + anchor + ']').closest('h1,h2,h3,h4,h5,h6,h7').css({'color': 'rgba(55, 200, 255, 1)', 'text-shadow': 'rgba(55, 200, 255, 0.5) 0px 0px 5px'});
+      $('a[name=' + anchor + ']').closest('h1,h2,h3,h4,h5,h6,h7').addClass('glow').delay(1250).queue(function(next){
+        $(this).removeClass('glow');next();
+      });
     }
 
   });
