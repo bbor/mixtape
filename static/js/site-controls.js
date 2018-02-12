@@ -68,7 +68,7 @@ define(['jquery', 'hoverDelay'], function($) {
       delayOut:200,
       handlerOut:hideFindControl
     });
-    $('#control-toc-content').hoverDelay({
+    $('#control-toc').hoverDelay({
       delayOut:200,
       handlerOut:hideTocControl
     });

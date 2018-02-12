@@ -1,4 +1,4 @@
-# Mixtape &#151; a front-end for content and docs
+# Mixtape -- a front-end for content and docs
 
 You feed Mixtape some typed data objects, typically each with some kind of content or documentation that you want to communicate. It generates for you a site that people can use to browse, search, and find those items, and to discover the content they're looking for.
 
