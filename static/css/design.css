@@ -18,7 +18,7 @@ h1 {
   border-bottom:2px orange solid;
 }
 
-div.page-summary {
+div#content > div.summary {
   font-family:Merriweather;
   font-size:smaller;
   color:#464646;
@@ -29,6 +29,11 @@ div.page-summary {
 h2 {
   margin-top:60px;
   font-size:28px;
+}
+
+h3 {
+  margin-top:40px;
+  font-size:22px
 }
 
 code {
@@ -228,5 +233,9 @@ h1.glow, h2.glow, h3.glow, h4.glow, h5.glow, h6.glow, h7.glow {
 }
 
 section {
-  margin-left:40px;
+  margin-left:20px;
+}
+
+.jstree-default .jstree-node {
+  line-height:32px;
 }

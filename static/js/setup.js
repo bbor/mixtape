@@ -7,16 +7,18 @@ requirejs.config({
     toc: '../toc',
     jquery: 'jquery-3.3.1.min',
     hoverDelay: 'jquery.hoverDelay.min',
+    scrollTo: 'jquery.scrollTo.min',
     typeahead: '../livesearch/typeahead.jquery.min',
     bloodhound: '../livesearch/bloodhound.min',
     jstree: '../toc/jstree.min'
   },
   shim: {
     'hoverDelay': {deps:['jquery']},
+    'scrollTo': {deps:['jquery']},
     'jstree': {deps:['jquery']}
   }
 });
 
-requirejs(['jquery', 'site-controls', 'highlight/highlight-controls', 'livesearch/livesearch-controls', 'toc/toc-controls'], function($) {
+requirejs(['site-controls', 'highlight/highlight-controls', 'livesearch/livesearch-controls', 'toc/toc-controls'], function($) {
   console.log('all initialized.');
 })

@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{page-title}}</title>
+    <title>{{mixtape-page-title}}</title>
     <script data-main="js/setup" src="js/require.js"></script>
     <link rel="stylesheet" href="fonts/fonts.css" />
     <link rel="stylesheet" href="fonts/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/design.css" />
     <link rel="stylesheet" href="toc/themes/default/style.min.css" />
+    <link rel="stylesheet" href="css/design.css" />
   </head>
   <body>
 
@@ -30,24 +30,13 @@
 
   <div id="content">
 
-  {{#if content-title}}
-  <div class="heading">
-  <h1><div class="permalink"><a name="whatever" href="#whatever" class="permalink fas fa-link"></a></div>{{content-title}}</h1>
-  </div>
-  {{/if}}
-
-  {{#if content-summary}}
-  <div class="page-summary">
-  <p>{{{content-summary}}}</p>
-  </div>
-  {{/if}}
-
-  {{{content}}}
+  {{{mixtape-content}}}
 
   <div class="footer">
     <p>Some footer text. Optional. Copyright &copy; whenever by your bidness.</p>
     <p>Dubbed by <img src="images/mixtape.png" title="Dubbed by mixtape." style="width:40px;position:relative;top:8px"></img> mixtape.</p>
   </div>
+
   </div>
   </body>
 </html>

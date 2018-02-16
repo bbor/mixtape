@@ -1,29 +1,56 @@
-define(['jquery','jstree'], function($) {
+define(['jquery','jstree','scrollTo'], function($) {
 
   var jstree_config = {
     "core" : {
       "multiple":false,
+      "restore_focus":false,
       "themes" : {
-        "variant" : "large",
         "dots": false
       },
       "data":function(obj, cb)
       {
-        var id = (obj.id == '#') ? 'root' : obj.id;
+        var id = (obj.id == '#') ? 'toc_root' : obj.id;
         require(['toc/data/' + id], function(data) {
-          cb(data);
+          cb(data.children);
         })
       }
     }
   };
 
+  function basename(url) {
+    return url.substr(location.pathname.lastIndexOf('/')+1).replace(/\.htm.*/i,'');
+  };
+
   $(document).ready(function () {
-    $('#toc-form').jstree(jstree_config).on('changed.jstree', function(e, data) {
+    $('#toc-form').jstree(jstree_config)
+    .on('loaded.jstree', function(e, data) {
+      var uid;
+      if (!!location.hash) { uid = 'toc_' + location.hash.substr(1); }
+      else { uid = 'toc_' + basename(location.pathname); }
+      require(['toc/data/' + uid], function(tocdata) {
+        function unfold(ancestry, index) {
+          if (index < ancestry.length)
+          {
+            data.instance.open_node(ancestry[index], function() { unfold(ancestry, index + 1); }, false);
+          } else {
+            // select the last ancestry node
+            var node = data.instance.get_node(ancestry[ancestry.length - 1], true);
+            if (node) {
+              data.instance.select_node(node, true);
+              $('#toc-form').trigger('scroll_to_selected', [node]);
+            }
+          }
+        }
+        unfold(tocdata.ancestry, 0);
+      })
+    })
+    .on('changed.jstree', function(e, data) {
       if (data.node.original && data.node.original.target)
       {
         window.location = data.node.original.target;
       }
-    }).on('open_node.jstree', function(e, data) {
+    })
+    .on('open_node.jstree', function(e, data) {
       if (data.node.children)
       {
         for (var i_c = 0; i_c < data.node.children.length; i_c++)
@@ -36,7 +63,19 @@ define(['jquery','jstree'], function($) {
           }
         }
       }
-    });
+    })
+  })
+  .on('scroll_to_selected', function(e, node) {
+    var d = $('#control-toc-content').css('display');
+    $('#control-toc-content').css('display','block');
+    $('#toc-form').scrollTo( node, {'axis':'y','offset':{'top':-100},onAfter:function() { $('#control-toc-content').css('display',d); } } );
   });
-
+  $(window).on('hashchange', function() {
+    if (!!location.hash) {
+      var uid = 'toc_' + location.hash.substr(1);
+      var node = $.jstree.reference('#toc-form').get_node(uid, true);
+      $.jstree.reference('#toc-form').select_node(node, true);
+      $('#toc-form').trigger('scroll_to_selected', [node]);
+    }
+  })
 });
