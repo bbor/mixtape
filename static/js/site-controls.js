@@ -1,82 +1,111 @@
 define(['jquery', 'hoverDelay'], function($) {
 
-  var showControlPanel = function() {
-    if ($(window).width() < 600) return;
-    $('#control-panel').animate({width:'380px'});
-    if ($(window).width() < 1224)
-      $('#control-panel').addClass('controls-open');
+  var toggle_control_panel_v = function () {
+    if ($('#control-panel').height() < 100)
+    {
+      $('#control-panel').animate({'height':'100%'});
+    } else {
+      var screenwidth = $(window).width();
+      var targetheight = (screenwidth > 600) ? '60px' : '40px';
+      $('#control-panel').animate({'height':targetheight}, function() { $(this).removeAttr('style'); } );
+      $('#control-strip-h-find').css({'background-color':'#bbbbbb'},200);
+      $('#control-strip-h-toc').css({'background-color':'#bbbbbb'},200);
+    }
   }
-  var hideControlPanel = function () {
-    if ($(window).width() < 600) return;
-    var screenwidth = $(window).width();
-    var targetwidth = (screenwidth > 1224) ? 380 : (screenwidth > 900) ? 300 : 140;
-    hideTocControl();
-    hideFindControl();
-    $('#control-panel').animate({width:targetwidth + 'px'}, function() { $('#control-panel').removeClass('controls-open').removeAttr('style') });
+
+  var show_find_control = function() {
+    $('#control-find').show();
+    $('#control-toc').hide();
+    $('#control-strip-h-toc').css({'background-color':'#bbbbbb'},200);
+    $('#control-strip-h-find').css({'background-color':'orange'},200);
   }
-  var hideFindControl = function() {
-    if ($(window).width() < 600) return;
-    $('#control-find-zen').fadeIn();
-    $('#control-find-content').fadeOut();
+  var show_find_control_h = function() {
+    show_control_panel_h();
+    $('#control-toc').hide();
+    $('#control-find').show();
+    $('#control-strip-v').addClass('control-strip-v-open');
+    $('#control-strip-v').animate({'margin-left':'500px'});
+    $('#control-strip-v-find').css({'background-color':'orange'},200);
+    $('#control-strip-v-toc').css({'background-color':'#bbbbbb'},200);
   }
-  var showFindControl = function () {
-    if ($(window).width() < 600) return;
-    $('#control-find-zen').fadeOut();
-    $('#control-find-content').show();
-    $('input#find').focus();
-    showControlPanel();
+
+  var show_toc_control = function() {
+    $('#control-toc').show();
+    $('#control-find').hide();
+    $('#control-strip-h-find').css({'background-color':'#bbbbbb'},200);
+    $('#control-strip-h-toc').css({'background-color':'orange'},200);
   }
-  var hideTocControl = function() {
-    if ($(window).width() < 600) return;
-    $('#control-toc-zen').fadeIn();
-    $('#control-toc-content').fadeOut();
+  var show_toc_control_h = function() {
+    show_control_panel_h();
+    $('#control-toc').show();
+    $('#control-find').hide();
+    $('#control-strip-v').addClass('control-strip-v-open');
+    $('#control-strip-v').animate({'margin-left':'500px'});
+    $('#control-strip-v-find').css({'background-color':'#bbbbbb'},200);
+    $('#control-strip-v-toc').css({'background-color':'orange'},200);
   }
-  var showTocControl = function () {
-    if ($(window).width() < 600) return;
-    $('#control-toc-zen').fadeOut();
-    $('#control-toc-content').show();
-    showControlPanel();
+
+  var show_control_panel_h = function() {
+    $('#control-panel').show();
+    $('#control-panel').animate({'width':'500px'});
+  }
+  var close_control_panel_h = function() {
+    $('#control-panel').animate({'width':'160px'}, function() { $(this).css({'display':'none'}); });
+    var contentleft = $('#content').css('margin-left').replace('px', '');
+    var targetleft = (contentleft > 450) ? '150px' : (contentleft > 350) ? '100px' : (contentleft > 250) ? '50px' : '0px';
+    $('#control-strip-v').animate({'margin-left':targetleft}, function() {
+        $(this).removeAttr('style');
+        $(this).removeClass('control-strip-v-open');
+        $('#control-panel').removeAttr('style');
+        $('#control-strip-v-find').css({'background-color':'#bbbbbb'});
+        $('#control-strip-v-toc').css({'background-color':'#bbbbbb'});
+      });
   }
 
   $(document).ready( function() {
-    $('#top-controls').on('click', function() {
+
+    $('#control-strip-h-find').on('click touchstart', function() {
       if ($('#control-panel').height() < 100)
       {
-        $('#control-panel').animate({'height':'100%'});
-        $('#top-controls-slider').removeClass('fa-angle-down').addClass('fa-angle-up');
+        toggle_control_panel_v();
+        show_find_control();
       } else {
-        $('#control-panel').animate({'height':'40px'}, function() { $('#control-panel').removeClass('controls-open').removeAttr('style') });
-        $('#top-controls-slider').removeClass('fa-angle-up').addClass('fa-angle-down');
+        if ($('#control-find').is(':visible'))
+        {
+          toggle_control_panel_v();
+        } else {
+          show_find_control();
+        }
       }
     });
 
-    $('#control-find-zen').hoverDelay({
-      delayIn:300,
-      handlerIn:showFindControl
-    }).on('click', showFindControl);
+    $('#control-strip-h-toc').on('click touchstart', function() {
+      if ($('#control-panel').height() < 100)
+      {
+        toggle_control_panel_v();
+        show_toc_control();
+      } else {
+        if ($('#control-toc').is(':visible'))
+        {
+          toggle_control_panel_v();
+        } else {
+          show_toc_control();
+        }
+      }
+    });
 
-    $('#control-toc-zen').hoverDelay({
+    $('#control-strip-v-find').hoverDelay({
       delayIn:300,
-      handlerIn:showTocControl
-    }).on('click', showTocControl);
+      handlerIn:show_find_control_h
+    }).on('click', show_find_control_h);
 
-    $('#control-panel').hoverDelay({
-      delayOut:200,
-      handlerOut:hideControlPanel
-    });
-    $('#control-find-content').hoverDelay({
-      delayOut:200,
-      handlerOut:hideFindControl
-    });
-    $('#control-toc').hoverDelay({
-      delayOut:200,
-      handlerOut:hideTocControl
-    });
+    $('#control-strip-v-toc').hoverDelay({
+      delayIn:300,
+      handlerIn:show_toc_control_h
+    }).on('click', show_toc_control_h);
 
     $('#content').on('click touchstart', function(e) {
-      hideFindControl();
-      hideTocControl();
-      hideControlPanel();
+      close_control_panel_h();
     });
 
     var anchor = location.hash;

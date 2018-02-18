@@ -22,7 +22,7 @@ define(['jquery','jstree','scrollTo'], function($) {
   };
 
   $(document).ready(function () {
-    $('#toc-form').jstree(jstree_config)
+    $('#toc').jstree(jstree_config)
     .on('loaded.jstree', function(e, data) {
       var uid;
       if (!!location.hash) { uid = 'toc_' + location.hash.substr(1); }
@@ -37,7 +37,7 @@ define(['jquery','jstree','scrollTo'], function($) {
             var node = data.instance.get_node(ancestry[ancestry.length - 1], true);
             if (node) {
               data.instance.select_node(node, true);
-              $('#toc-form').trigger('scroll_to_selected', [node]);
+              $('#toc').trigger('scroll_to_selected', [node]);
             }
           }
         }
@@ -68,14 +68,14 @@ define(['jquery','jstree','scrollTo'], function($) {
   .on('scroll_to_selected', function(e, node) {
     var d = $('#control-toc-content').css('display');
     $('#control-toc-content').css('display','block');
-    $('#toc-form').scrollTo( node, {'axis':'y','offset':{'top':-100},onAfter:function() { $('#control-toc-content').css('display',d); } } );
+    $('#toc').scrollTo( node, {'axis':'y','offset':{'top':-100},onAfter:function() { $('#control-toc-content').css('display',d); } } );
   });
   $(window).on('hashchange', function() {
     if (!!location.hash) {
       var uid = 'toc_' + location.hash.substr(1);
-      var node = $.jstree.reference('#toc-form').get_node(uid, true);
-      $.jstree.reference('#toc-form').select_node(node, true);
-      $('#toc-form').trigger('scroll_to_selected', [node]);
+      var node = $.jstree.reference('#toc').get_node(uid, true);
+      $.jstree.reference('#toc').select_node(node, true);
+      $('#toc').trigger('scroll_to_selected', [node]);
     }
   })
 });

@@ -181,9 +181,9 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 .tt-menu {
   text-align:left;
-  width:440px;
-  margin: 12px 0;
-  padding: 8px 0;
+  width:280px;
+  margin: 10px 0;
+  padding: 10px 10px 50px 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -197,10 +197,13 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   overflow-y: auto;
 }
 
+.tt-suggestion-header {
+  font-size: 14px;
+  border-bottom: 1px solid #cccccc;
+}
 .tt-suggestion {
-  padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
+  padding: 3px 10px;
+  font-size: 14px;
 }
 
 .tt-suggestion:hover {
