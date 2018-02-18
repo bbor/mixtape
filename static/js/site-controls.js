@@ -107,6 +107,9 @@ define(['jquery', 'hoverDelay'], function($) {
     $('#content').on('click touchstart', function(e) {
       close_control_panel_h();
     });
+    $(window).on('hashchange', function(e) {
+      close_control_panel_h();
+    });
 
     var anchor = location.hash;
     if (anchor && anchor != '#')

@@ -66,9 +66,10 @@ define(['jquery','jstree','scrollTo'], function($) {
     })
   })
   .on('scroll_to_selected', function(e, node) {
-    var d = $('#control-toc-content').css('display');
-    $('#control-toc-content').css('display','block');
-    $('#toc').scrollTo( node, {'axis':'y','offset':{'top':-100},onAfter:function() { $('#control-toc-content').css('display',d); } } );
+    var d = $('#control-toc').css('display');
+    $('#control-panel').css('display','block');
+    $('#control-toc').css('display','block');
+    $('#control-toc').scrollTo( node, {'axis':'y','offset':{'top':-100},onAfter:function() { $(this).removeAttr('style'); } } );
   });
   $(window).on('hashchange', function() {
     if (!!location.hash) {
