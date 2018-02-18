@@ -72,8 +72,8 @@ define(['jquery','jstree','scrollTo'], function($) {
     $('#control-toc').scrollTo( node, {'axis':'y','offset':{'top':-150},onAfter:function() { $(this).removeAttr('style'); } } );
   });
   $(window).on('hashchange', function() {
-    // todo: clear selection
     if (!!location.hash) {
+      $.jstree.reference('#toc').deselect_all(true);
       var uid = 'toc_' + location.hash.substr(1);
       var node = $.jstree.reference('#toc').get_node(uid, true);
       $.jstree.reference('#toc').select_node(node, true);
