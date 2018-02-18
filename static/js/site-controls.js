@@ -62,6 +62,17 @@ define(['jquery', 'hoverDelay'], function($) {
       });
   }
 
+  var glow_heading = function() {
+    var anchor = location.hash;
+    if (anchor && anchor != '#')
+    {
+      anchor = anchor.replace('#', '');
+      $('a[name=' + anchor + ']').closest('h1,h2,h3,h4,h5,h6,h7').addClass('glow').delay(1250).queue(function(next){
+        $(this).removeClass('glow');next();
+      });
+    }
+  }
+
   $(document).ready( function() {
 
     $('#control-strip-h-find').on('click touchstart', function() {
@@ -108,18 +119,11 @@ define(['jquery', 'hoverDelay'], function($) {
       close_control_panel_h();
     });
     $(window).on('hashchange', function(e) {
+      glow_heading();
       close_control_panel_h();
     });
 
-    var anchor = location.hash;
-    if (anchor && anchor != '#')
-    {
-      anchor = anchor.replace('#', '');
-      $('a[name=' + anchor + ']').closest('h1,h2,h3,h4,h5,h6,h7').addClass('glow').delay(1250).queue(function(next){
-        $(this).removeClass('glow');next();
-      });
-    }
-
+    glow_heading();
   });
 
   return {};
