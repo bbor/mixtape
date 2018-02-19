@@ -181,9 +181,9 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
 
 .tt-menu {
   text-align:left;
-  width:280px;
+  width:520px;
   margin: 10px 0;
-  padding: 10px 10px 50px 10px;
+  padding: 10px 10px 20px 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -193,7 +193,6 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
      -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
           box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  max-height: 500px;
   overflow-y: auto;
 }
 

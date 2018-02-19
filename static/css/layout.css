@@ -75,6 +75,7 @@ input#find {
   font-size:14px;
   padding:10px 10px;
   font-family: Lato;
+  width:520px;
 }
 
 #control-toc {
@@ -97,7 +98,9 @@ input#find {
     height:60px;
   }
   #controls {
-    top:70px;
+    top:75px;
+    left:30px;
+    right:30px;
   }
   #content {
     margin:20px 20px 80px 20px;

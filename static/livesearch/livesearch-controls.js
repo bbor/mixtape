@@ -1,5 +1,5 @@
 
-define(['jquery','typeahead','bloodhound'], function($) {
+define(['jquery','site-controls','typeahead','bloodhound'], function($, site_controls) {
   // used to tokenize the data and the input string, so that matches will begin
   // after any non-alpha-numeric character.
   function nonAlphanum(str) {
@@ -77,6 +77,15 @@ define(['jquery','typeahead','bloodhound'], function($) {
         {
           window.location.href = suggestion.u;
         }
+      })
+      .bind('typeahead:open', function() {
+        var css = {};
+        css['max-height'] = $('#controls').innerHeight() - 120;
+        if (site_controls.is_mobile())
+        {
+          css.width = $('#controls').innerWidth() - 20;
+        }
+        $('div.tt-menu').css(css);
       });
     });
   });
