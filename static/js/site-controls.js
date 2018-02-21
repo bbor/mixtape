@@ -136,6 +136,8 @@ define(['jquery', 'hoverDelay'], function($) {
     }).on('click', site_controls.show_toc_control_h);
 
     $('#content').on('click', function(e) {
+      if($(e.target).closest('#control-panel, #control-strip-v').length)
+          return;
       if (!site_controls.is_mobile())
       {
         site_controls.close_control_panel_h();

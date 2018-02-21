@@ -241,3 +241,24 @@ section {
 .jstree-default .jstree-node {
   line-height:32px;
 }
+
+a {
+  color: dodgerblue;
+}
+
+a {
+  text-decoration: none;
+  color: dodgerblue;
+}
+
+a code:hover {
+  border-color: dodgerblue;
+  color: deepskyblue;
+}
+
+#control-panel {
+  font-family: Merriweather;
+  font-size: smaller;
+  font-weight: lighter;
+}
+
