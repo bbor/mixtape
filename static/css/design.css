@@ -231,7 +231,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 
 h1.glow, h2.glow, h3.glow, h4.glow, h5.glow, h6.glow, h7.glow {
-	text-shadow: 0 0 15px cyan;
+	text-shadow: 0 0 15px #00aeff;
 }
 
 section {
@@ -251,14 +251,20 @@ a {
   color: dodgerblue;
 }
 
+a:hover {
+  color: deepskyblue;
+}
+
 a code:hover {
   border-color: dodgerblue;
   color: deepskyblue;
+  background-color: #fcfcfc;
 }
 
 #control-panel {
   font-family: Merriweather;
   font-size: smaller;
   font-weight: lighter;
+  color: #464646;
 }
 
