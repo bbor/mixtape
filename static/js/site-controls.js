@@ -21,6 +21,9 @@ define(['jquery', 'hoverDelay'], function($) {
     };
   }
 
+  site_controls.enable_wave_open = true;
+
+  // vertical sliding panel, for mobile
   site_controls.hide_control_panel_v = function () {
     var targetheight = (site_controls.breakpoint_level() == 1) ? '60px' : '40px';
     $('#control-panel').animate({'height':targetheight}, function() { $(this).removeAttr('style'); } );
@@ -45,11 +48,17 @@ define(['jquery', 'hoverDelay'], function($) {
     $('#control-strip-h-toc').css({'background-color':'orange'});
   }
 
+  // horizontal sliding panel, for tablet and desktop
   site_controls.show_control_panel_h = function() {
     $('#control-panel').show();
     $('#control-panel').animate({'width':'600px'});
   }
   site_controls.close_control_panel_h = function() {
+    if ($('#control-panel').is(':hover') || $('#control-strip-v').is(':hover'))
+    {
+      site_controls.enable_wave_open = false;
+      $('#control-strip-v').one('mousemove', function() { site_controls.enable_wave_open = true; });
+    }
     $('#control-panel').animate({'width':'160px'}, function() { $(this).css({'display':'none'}); });
     var breakpoint = site_controls.breakpoint_level();
     var targetleft = (breakpoint == 5) ? '150px' : (breakpoint == 4) ? '100px' : (breakpoint == 3) ? '50px' : '0px';
@@ -127,12 +136,12 @@ define(['jquery', 'hoverDelay'], function($) {
 
     $('#control-strip-v-find').hoverDelay({
       delayIn:300,
-      handlerIn:site_controls.show_find_control_h
+      handlerIn:function() { if (site_controls.enable_wave_open) site_controls.show_find_control_h(); }
     }).on('click', site_controls.show_find_control_h);
 
     $('#control-strip-v-toc').hoverDelay({
       delayIn:300,
-      handlerIn:site_controls.show_toc_control_h
+      handlerIn:function() { if (site_controls.enable_wave_open) site_controls.show_toc_control_h(); }
     }).on('click', site_controls.show_toc_control_h);
 
     $(document).on('click', function(e) {
