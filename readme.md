@@ -39,7 +39,9 @@ In `node.js`:
 ```
 var mixdown = require('mixdown');
 
-var types = {
+var options = {
+	output:'./some/folder/somewhere',
+	types = {
 		'class':{
 			'page':true
 			...
@@ -47,12 +49,9 @@ var types = {
 		'function':{
 			..
 		},
-		... // whatever other data types you need
+		... // whatever other data types and config you need
 	}
-var options = {
-		output:'./some/folder/somewhere',
-		...
-	}
+	... // maybe other config parameters
 }
 var database = {
 	'uid_foo': {
@@ -71,7 +70,7 @@ var database = {
 	... // lots more records go here!
 }
 
-mixdown.run(types, options, database, callback);
+mixdown.run(options, database, callback);
 ```
 
 ## Or, use it with Typesmith
