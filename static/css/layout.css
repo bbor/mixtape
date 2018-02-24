@@ -44,18 +44,36 @@ div {
   z-index:1000;
 }
 #control-strip-h-find, #control-strip-h-toc {
+  position:relative;
   width:50%;
   float:left;
   margin:0;
   padding:0;
-  text-align:center;
   height:40px;
+}
+#h-find {
   background-color: #bbbbbb;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+  background-image: url('../images/icon_find.png');
+  background-size: 20px 20px;
+  height:20px;
+  width:20px;
+  left:0; top:0; right:0; bottom:0;
+  margin:auto;
+  padding:0px;
+  line-height:0px;
+  position:absolute;
+}
+#h-toc {
+  background-color: #bbbbbb;
+  background-image: url('../images/icon_toc.png');
+  background-size: 20px 20px;
+  height:20px;
+  width:20px;
+  left:0; top:0; right:0; bottom:0;
+  margin:auto;
+  padding:0px;
+  line-height:0px;
+  position:absolute;
 }
 
 #controls {
@@ -92,7 +110,11 @@ input#find {
 
   #control-strip-h-find, #control-strip-h-toc {
     height:60px;
-    font-size:30px;
+  }
+  #h-find, #h-toc {
+    background-size: 40px 40px;
+    height:40px;
+    width:40px;
   }
   #control-panel {
     height:60px;
@@ -134,7 +156,6 @@ input#find {
 
   #control-strip-v-find {
     display:block;
-    background-color:#FFFFFF;
     z-index:200;
     font-size:80px;
     color:#cacaca;
@@ -143,16 +164,11 @@ input#find {
     top:55px; left:0; right:0;
     width:80px; height:80px;
     background-color: #bbbbbb;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
-    line-height:0;
+    background-image: url('../images/icon_find.png');
+    background-size: 80px 80px;
   }
   #control-strip-v-toc {
     display:block;
-    background-color:#FFFFFF;
     z-index:200;
     font-size:80px;
     color:#cacaca;
@@ -162,11 +178,8 @@ input#find {
     width:80px;height:80px;
     line-height:0;
     background-color: #bbbbbb;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+    background-image: url('../images/icon_toc.png');
+    background-size: 80px 80px;
   }
 }
 
