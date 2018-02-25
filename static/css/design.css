@@ -268,3 +268,39 @@ a code:hover {
   color: #464646;
 }
 
+.expandable-header {
+  border-top:1px solid lightgrey;
+  cursor: pointer;
+}
+
+.expandable-content {
+  display:none;
+}
+
+.expandable-content p:first-child {
+  margin-top: 0px;
+}
+
+.expandable-icon {
+  width:20px;
+  -webkit-transition: transform 0.4s ease;
+  -moz-transition: transform 0.4s ease;
+  -ms-transition: transform 0.4s ease;
+  -o-transition: transform 0.4s ease;
+  transition: transform 0.4s ease;  
+  transform-origin:center left;
+}
+
+.icon-rotated {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transition: transform 0.4s ease;
+  -moz-transition: transform 0.4s ease;
+  -ms-transition: transform 0.4s ease;
+  -o-transition: transform 0.4s ease;
+  transition: transform 0.4s ease;  
+  transform-origin:center left;
+}

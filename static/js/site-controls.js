@@ -158,6 +158,27 @@ define(['jquery', 'hoverDelay'], function($) {
     }
   }
 
+  // TODO: make this recurse through expandable parents, then scroll to selected element
+  site_controls.expand_heading = function() {
+    var anchor = location.hash.replace(/#/, '') || location.pathname.replace(/^.*\//,'').replace(/\.html?/,'');
+    if (!!anchor)
+    {
+      site_controls.toggle_expander_by_id(anchor + '-expand');
+    }
+  }
+
+  site_controls.toggle_expander_by_id = function (id) {
+    var id_content = '#' + id + '-content';
+    var id_icon = '#' + id + '-icon';
+    $(id_content).slideToggle();
+    $(id_icon).toggleClass('icon-rotated');
+  }
+  
+  site_controls.toggle_expander = function (e) {
+    var id = $(this).attr('id');
+    site_controls.toggle_expander_by_id(id);
+  }
+
   $(document).ready( function() {
 
     $('#control-strip-m-find').on('click', site_controls.toggle_find_control_m);
@@ -185,9 +206,13 @@ define(['jquery', 'hoverDelay'], function($) {
     $(window).on('hashchange', function(e) {
       site_controls.glow_heading();
       site_controls.close_control_panel_w();
+      site_controls.expand_heading();
     });
 
     site_controls.glow_heading();
+    site_controls.expand_heading();
+
+    $(document).on('click', '.expandable-header', site_controls.toggle_expander)
   });
 
   return site_controls;
