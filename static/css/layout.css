@@ -24,18 +24,18 @@ div {
   z-index:500;
 }
 
-#control-strip-v {
+#control-strip-w {
   position:fixed;
   background-color:#FFFFFF;
   z-index:1000;
   display:none;
   padding:0px 40px;
 }
-.control-strip-v-open {
+.control-strip-w-open {
   border-right:2px solid orange;
 }
 
-#control-strip-h {
+#control-strip-m {
   position:absolute;
   top:0px; left:0px; right:0px;
   border-top: 1px solid orange;
@@ -43,7 +43,7 @@ div {
   background-color:#FFFFFF;
   z-index:1000;
 }
-#control-strip-h-find, #control-strip-h-toc {
+#control-strip-m-find, #control-strip-m-toc {
   position:relative;
   width:50%;
   float:left;
@@ -51,7 +51,7 @@ div {
   padding:0;
   height:40px;
 }
-#h-find {
+#m-find {
   background-color: #bbbbbb;
   background-image: url('../images/icon_find.png');
   background-size: 20px 20px;
@@ -63,7 +63,7 @@ div {
   line-height:0px;
   position:absolute;
 }
-#h-toc {
+#m-toc {
   background-color: #bbbbbb;
   background-image: url('../images/icon_toc.png');
   background-size: 20px 20px;
@@ -108,10 +108,10 @@ input#find {
 
 @media only screen and (min-width : 600px) {
 
-  #control-strip-h-find, #control-strip-h-toc {
+  #control-strip-m-find, #control-strip-m-toc {
     height:60px;
   }
-  #h-find, #h-toc {
+  #m-find, #m-toc {
     background-size: 40px 40px;
     height:40px;
     width:40px;
@@ -133,10 +133,10 @@ input#find {
 /* Tablets landscape ----------- */
 
 @media only screen and (min-width : 900px) {
-  #control-strip-h {
+  #control-strip-m {
     display:none;
   }
-  #control-strip-v {
+  #control-strip-w {
     display:block;
     height:100%;
     width:80px;
@@ -154,7 +154,7 @@ input#find {
     height:100%;
   }
 
-  #control-strip-v-find {
+  #control-strip-w-find {
     display:block;
     z-index:200;
     font-size:80px;
@@ -167,7 +167,7 @@ input#find {
     background-image: url('../images/icon_find.png');
     background-size: 80px 80px;
   }
-  #control-strip-v-toc {
+  #control-strip-w-toc {
     display:block;
     z-index:200;
     font-size:80px;
@@ -189,7 +189,7 @@ input#find {
     margin-left:260px;
     min-width:300px;
   }
-  #control-strip-v {
+  #control-strip-w {
     margin-left:50px
   }
 }
@@ -199,7 +199,7 @@ input#find {
   #content {
     margin-left:360px;
   }
-  #control-strip-v {
+  #control-strip-w {
     margin-left:100px
   }
 }
@@ -209,7 +209,7 @@ input#find {
   #content {
     margin-left:460px;
   }
-  #control-strip-v {
+  #control-strip-w {
     margin-left:150px
   }
 }
