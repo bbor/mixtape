@@ -28,6 +28,15 @@ define(['jquery', 'hoverDelay'], function($) {
   site_controls.enable_wave_open = true;
 
   // vertical sliding panel, for mobile
+  site_controls.control_panel_is_open_m = function() {
+    return $('#control-panel').height() > 100;
+  }
+  site_controls.find_is_shown_m = function() {
+    return site_controls.control_panel_is_open_m() && $('#control-find').is(':visible'); 
+  }
+  site_controls.toc_is_shown_m = function() {
+    return site_controls.control_panel_is_open_m() && $('#control-toc').is(':visible'); 
+  }
   site_controls.hide_control_panel_m = function () {
     var breakpoint = site_controls.breakpoint_level();
     var targetheight = site_controls.panel_m_height[breakpoint] + 'px';
@@ -53,37 +62,40 @@ define(['jquery', 'hoverDelay'], function($) {
     $('#m-toc').css({'background-color':'orange'});
   }
   site_controls.toggle_find_control_m = function() {
-    if ($('#control-panel').height() < 100)
-    {
-      site_controls.show_control_panel_m();
-      site_controls.show_find_control_m();
+    if (site_controls.find_is_shown_m()) {
+      site_controls.hide_control_panel_m();
     } else {
-      if ($('#control-find').is(':visible'))
+      if (!site_controls.control_panel_is_open_m())
       {
-        site_controls.hide_control_panel_m();
-      } else {
-        site_controls.show_find_control_m();
+        site_controls.show_control_panel_m();
       }
+      site_controls.show_find_control_m();
     }
   }
   site_controls.toggle_toc_control_m = function() {
-    if ($('#control-panel').height() < 100)
-    {
-      site_controls.show_control_panel_m();
-      site_controls.show_toc_control_m();
+    if (site_controls.toc_is_shown_m()) {
+      site_controls.hide_control_panel_m();
     } else {
-      if ($('#control-toc').is(':visible'))
+      if (!site_controls.control_panel_is_open_m())
       {
-        site_controls.hide_control_panel_m();
-      } else {
-        site_controls.show_toc_control_m();
+        site_controls.show_control_panel_m();
       }
+      site_controls.show_toc_control_m();
     }
   }
 
   // horizontal sliding panel, for tablet and desktop
+  site_controls.control_panel_is_open_w = function() {
+    return $('#control-panel').is(':visible') && $('#control-strip-w').css('margin-left') == '600px';
+  }
+  site_controls.find_is_shown_w = function() {
+    return site_controls.control_panel_is_open_w() && $('#control-find').is(':visible'); 
+  }
+  site_controls.toc_is_shown_w = function() {
+    return site_controls.control_panel_is_open_w() && $('#control-toc').is(':visible'); 
+  }
   site_controls.show_control_panel_w = function() {
-    if (!$('#control-panel').is(':visible'))
+    if (!site_controls.control_panel_is_open_w())
     {
       var breakpoint = site_controls.breakpoint_level();
       var w = site_controls.panel_w_start_width[breakpoint] + 'px';
@@ -101,7 +113,6 @@ define(['jquery', 'hoverDelay'], function($) {
     var breakpoint = site_controls.breakpoint_level();
     var targetleft = site_controls.strip_w_margin_left[breakpoint] + 'px';
     var w = site_controls.panel_w_start_width[breakpoint] + 'px';
-    console.log(w);
     $('#control-panel').animate({'width': w}, function() { $('#control-panel').removeAttr('style'); });
     $('#control-strip-w').animate({'margin-left': targetleft}, function() {
         $(this).removeAttr('style');
@@ -114,7 +125,7 @@ define(['jquery', 'hoverDelay'], function($) {
     site_controls.show_control_panel_w();
     $('#control-toc').hide();
     $('#control-find').show();
-    if ($('#control-strip-w').css('margin-left') != '600px')
+    if (!site_controls.control_panel_is_open_w())
     {
       $('#control-strip-w').animate({'margin-left':'600px'});
       $('#control-strip-w').addClass('control-strip-w-open');
@@ -127,7 +138,7 @@ define(['jquery', 'hoverDelay'], function($) {
     site_controls.show_control_panel_w();
     $('#control-toc').show();
     $('#control-find').hide();
-    if ($('#control-strip-w').css('margin-left') != '600px')
+    if (!site_controls.control_panel_is_open_w())
     {
       $('#control-strip-w').animate({'margin-left':'600px'});
       $('#control-strip-w').addClass('control-strip-w-open');
@@ -149,9 +160,9 @@ define(['jquery', 'hoverDelay'], function($) {
 
   $(document).ready( function() {
 
-    $('#control-strip-m-find').on('click', toggle_find_control_m);
+    $('#control-strip-m-find').on('click', site_controls.toggle_find_control_m);
 
-    $('#control-strip-m-toc').on('click', toggle_toc_control_m);
+    $('#control-strip-m-toc').on('click', site_controls.toggle_toc_control_m);
 
     $('#control-strip-w-find').hoverDelay({
       delayIn:300,
