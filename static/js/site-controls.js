@@ -31,23 +31,23 @@ define(['jquery', 'hoverDelay'], function($) {
   site_controls.control_panel_is_open_m = function() {
     return $('#control-panel').height() > 100;
   }
-  site_controls.find_is_shown_m = function() {
+  site_controls.find_is_open_m = function() {
     return site_controls.control_panel_is_open_m() && $('#control-find').is(':visible'); 
   }
-  site_controls.toc_is_shown_m = function() {
+  site_controls.toc_is_open_m = function() {
     return site_controls.control_panel_is_open_m() && $('#control-toc').is(':visible'); 
   }
-  site_controls.hide_control_panel_m = function () {
+  site_controls.close_control_panel_m = function () {
     var breakpoint = site_controls.breakpoint_level();
     var targetheight = site_controls.panel_m_height[breakpoint] + 'px';
     $('#control-panel').animate({'height':targetheight}, function() { $(this).removeAttr('style'); } );
     $('#m-find').removeAttr('style');
     $('#m-toc').removeAttr('style');
   }
-  site_controls.show_control_panel_m = function () {
+  site_controls.open_control_panel_m = function () {
     $('#control-panel').animate({'height':'100%'}, function() { $('input#find').focus(); });
   }
-  site_controls.show_find_control_m = function() {
+  site_controls.open_find_control_m = function() {
     $('#control-find').show();
     $('#control-toc').hide();
     $('#m-toc').removeAttr('style');
@@ -55,32 +55,32 @@ define(['jquery', 'hoverDelay'], function($) {
     var mw = $('#controls').innerWidth() - 20;
     $('input#find').css({'width':mw});
   }
-  site_controls.show_toc_control_m = function() {
+  site_controls.open_toc_control_m = function() {
     $('#control-toc').show();
     $('#control-find').hide();
     $('#m-find').removeAttr('style');
     $('#m-toc').css({'background-color':'orange'});
   }
   site_controls.toggle_find_control_m = function() {
-    if (site_controls.find_is_shown_m()) {
-      site_controls.hide_control_panel_m();
+    if (site_controls.find_is_open_m()) {
+      site_controls.close_control_panel_m();
     } else {
       if (!site_controls.control_panel_is_open_m())
       {
-        site_controls.show_control_panel_m();
+        site_controls.open_control_panel_m();
       }
-      site_controls.show_find_control_m();
+      site_controls.open_find_control_m();
     }
   }
   site_controls.toggle_toc_control_m = function() {
-    if (site_controls.toc_is_shown_m()) {
-      site_controls.hide_control_panel_m();
+    if (site_controls.toc_is_open_m()) {
+      site_controls.close_control_panel_m();
     } else {
       if (!site_controls.control_panel_is_open_m())
       {
-        site_controls.show_control_panel_m();
+        site_controls.open_control_panel_m();
       }
-      site_controls.show_toc_control_m();
+      site_controls.open_toc_control_m();
     }
   }
 
@@ -88,13 +88,13 @@ define(['jquery', 'hoverDelay'], function($) {
   site_controls.control_panel_is_open_w = function() {
     return $('#control-panel').is(':visible') && $('#control-strip-w').css('margin-left') == '600px';
   }
-  site_controls.find_is_shown_w = function() {
+  site_controls.find_is_open_w = function() {
     return site_controls.control_panel_is_open_w() && $('#control-find').is(':visible'); 
   }
-  site_controls.toc_is_shown_w = function() {
+  site_controls.toc_is_open_w = function() {
     return site_controls.control_panel_is_open_w() && $('#control-toc').is(':visible'); 
   }
-  site_controls.show_control_panel_w = function() {
+  site_controls.open_control_panel_w = function() {
     if (!site_controls.control_panel_is_open_w())
     {
       var breakpoint = site_controls.breakpoint_level();
@@ -121,8 +121,8 @@ define(['jquery', 'hoverDelay'], function($) {
         $('#control-strip-w-toc').removeAttr('style');
       });
   }
-  site_controls.show_find_control_w = function() {
-    site_controls.show_control_panel_w();
+  site_controls.open_find_control_w = function() {
+    site_controls.open_control_panel_w();
     $('#control-toc').hide();
     $('#control-find').show();
     if (!site_controls.control_panel_is_open_w())
@@ -134,8 +134,16 @@ define(['jquery', 'hoverDelay'], function($) {
     $('#control-strip-w-toc').removeAttr('style');
     $('input#find').css({'width':'520px'}).focus();
   }
-  site_controls.show_toc_control_w = function() {
-    site_controls.show_control_panel_w();
+  site_controls.toggle_find_control_w = function() {
+    if (site_controls.find_is_open_w())
+    {
+      site_controls.close_control_panel_w();
+    } else {
+      site_controls.open_find_control_w();
+    }
+  }
+  site_controls.open_toc_control_w = function() {
+    site_controls.open_control_panel_w();
     $('#control-toc').show();
     $('#control-find').hide();
     if (!site_controls.control_panel_is_open_w())
@@ -145,6 +153,14 @@ define(['jquery', 'hoverDelay'], function($) {
     }
     $('#control-strip-w-find').removeAttr('style');
     $('#control-strip-w-toc').css({'background-color':'orange'});
+  }
+  site_controls.toggle_toc_control_w = function() {
+    if (site_controls.toc_is_open_w())
+    {
+      site_controls.close_control_panel_w();
+    } else {
+      site_controls.open_toc_control_w();
+    }
   }
 
 
@@ -187,13 +203,13 @@ define(['jquery', 'hoverDelay'], function($) {
 
     $('#control-strip-w-find').hoverDelay({
       delayIn:300,
-      handlerIn:function() { if (site_controls.enable_wave_open) site_controls.show_find_control_w(); }
-    }).on('click', site_controls.show_find_control_w);
+      handlerIn:function() { if (site_controls.enable_wave_open) site_controls.open_find_control_w(); }
+    }).on('click', site_controls.toggle_find_control_w);
 
     $('#control-strip-w-toc').hoverDelay({
       delayIn:300,
-      handlerIn:function() { if (site_controls.enable_wave_open) site_controls.show_toc_control_w(); }
-    }).on('click', site_controls.show_toc_control_w);
+      handlerIn:function() { if (site_controls.enable_wave_open) site_controls.open_toc_control_w(); }
+    }).on('click', site_controls.toggle_toc_control_w);
 
     $(document).on('click touchstart', function(e) {
       if($(e.target).closest('#control-panel, #control-strip-w').length)

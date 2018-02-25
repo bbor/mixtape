@@ -68,6 +68,7 @@ define(['jquery','jstree','scrollTo'], function($) {
     })
   })
   .on('scroll_to_selected', function(e, node) {
+    if (!node) return;
     // we have to temporarily make parents visible before syncing
     var p = $('#control-panel').css('display');
     var d = $('#control-toc').css('display');
