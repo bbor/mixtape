@@ -60,7 +60,7 @@ define(['jquery','site-controls','typeahead','bloodhound'], function($, site_con
           source.source = bloodhounds[i];
           source.limit = 50;
           source.templates = {
-            header: '<div class="tt-suggestion-header">' + title + '</div>'
+            header: (key == '__untyped__') ? null : '<div class="tt-suggestion-header">' + title + '</div>'
           }
           list[i+1] = source;
         }
