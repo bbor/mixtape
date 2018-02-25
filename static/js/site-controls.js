@@ -92,10 +92,9 @@ define(['jquery', 'hoverDelay'], function($) {
 
 
   site_controls.glow_heading = function() {
-    var anchor = location.hash;
-    if (anchor && anchor != '#')
+    var anchor = location.hash.replace(/#/, '') || location.pathname.replace(/^.*\//,'').replace(/\.html?/,'');
+    if (!!anchor)
     {
-      anchor = anchor.replace('#', '');
       $('a[name=' + anchor + ']').closest('h1,h2,h3,h4,h5,h6,h7').addClass('glow').delay(2000).queue(function(next){
         $(this).removeClass('glow');next();
       });
