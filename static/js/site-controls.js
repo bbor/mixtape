@@ -50,8 +50,14 @@ define(['jquery', 'hoverDelay'], function($) {
 
   // horizontal sliding panel, for tablet and desktop
   site_controls.show_control_panel_h = function() {
-    $('#control-panel').show();
-    $('#control-panel').animate({'width':'600px'});
+    if (!$('#control-panel').is(':visible'))
+    {
+      var breakpoint = site_controls.breakpoint_level();
+      var w = (breakpoint == 5) ? '310' : (breakpoint == 4) ? '260' : (breakpoint == 3) ? '210' : '160';
+      $('#control-panel').css({'width': w + 'px'});
+      $('#control-panel').show();
+      $('#control-panel').animate({'width':'600px'});
+    }
   }
   site_controls.close_control_panel_h = function() {
     if ($('#control-panel').is(':hover') || $('#control-strip-v').is(':hover'))
@@ -59,10 +65,11 @@ define(['jquery', 'hoverDelay'], function($) {
       site_controls.enable_wave_open = false;
       $('#control-strip-v').one('mousemove', function() { site_controls.enable_wave_open = true; });
     }
-    $('#control-panel').animate({'width':'160px'}, function() { $(this).css({'display':'none'}); });
     var breakpoint = site_controls.breakpoint_level();
-    var targetleft = (breakpoint == 5) ? '150px' : (breakpoint == 4) ? '100px' : (breakpoint == 3) ? '50px' : '0px';
-    $('#control-strip-v').animate({'margin-left':targetleft}, function() {
+    var targetleft = (breakpoint == 5) ? '150' : (breakpoint == 4) ? '100' : (breakpoint == 3) ? '50' : '0';
+    var w = 160 + parseInt(targetleft);
+    $('#control-panel').animate({'width': w + 'px'}, function() { $(this).css({'display':'none'}); });
+    $('#control-strip-v').animate({'margin-left': targetleft + 'px'}, function() {
         $(this).removeAttr('style');
         $(this).removeClass('control-strip-v-open');
         $('#control-panel').removeAttr('style');
