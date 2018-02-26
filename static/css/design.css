@@ -282,7 +282,7 @@ a code:hover {
 }
 
 .expandable-icon {
-  width:20px;
+  width:0.75em;
   -webkit-transition: transform 0.4s ease;
   -moz-transition: transform 0.4s ease;
   -ms-transition: transform 0.4s ease;
@@ -303,4 +303,8 @@ a code:hover {
   -o-transition: transform 0.4s ease;
   transition: transform 0.4s ease;  
   transform-origin:center left;
+}
+
+.heading p {
+  display:inline;
 }

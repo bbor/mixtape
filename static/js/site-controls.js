@@ -174,25 +174,26 @@ define(['jquery', 'hoverDelay'], function($) {
     }
   }
 
-  // TODO: make this recurse through expandable parents, then scroll to selected element
   site_controls.expand_heading = function() {
     var anchor = location.hash.replace(/#/, '') || location.pathname.replace(/^.*\//,'').replace(/\.html?/,'');
     if (!!anchor)
     {
-      site_controls.toggle_expander_by_id(anchor + '-expand');
+      $('#' + anchor).parents('.expandable-content').get().reverse().forEach(function(item) {
+        $(item).show();
+        $('#' + item.id.replace('-content','-icon')).addClass('icon-rotated');
+      });
+      $('#' + anchor + '-expand-content').show();
+      $('#' + anchor + '-expand-icon').addClass('icon-rotated');
+      $(window).scrollTo($('#' + anchor));
     }
   }
 
-  site_controls.toggle_expander_by_id = function (id) {
+  site_controls.toggle_expander = function (e) {
+    var id = $(this).attr('id');
     var id_content = '#' + id + '-content';
     var id_icon = '#' + id + '-icon';
     $(id_content).slideToggle();
     $(id_icon).toggleClass('icon-rotated');
-  }
-  
-  site_controls.toggle_expander = function (e) {
-    var id = $(this).attr('id');
-    site_controls.toggle_expander_by_id(id);
   }
 
   $(document).ready( function() {
