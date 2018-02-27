@@ -18,12 +18,15 @@ h1 {
   border-bottom:2px orange solid;
 }
 
-div#content > div.summary {
+div#content div.summary {
   font-family:Merriweather;
   font-size:smaller;
   color:#464646;
-  border-bottom:1px orange solid;
   font-style:italic;
+}
+
+div.summary.level1 {
+  border-bottom:1px lightgrey solid;
 }
 
 h2 {
@@ -270,6 +273,9 @@ a code:hover {
 
 .expandable-header {
   border-top:1px solid lightgrey;
+}
+
+.expandable-header.active {
   cursor: pointer;
 }
 
@@ -277,7 +283,7 @@ a code:hover {
   display:none;
 }
 
-.expandable-content p:first-child {
+.expandable-content *:first-child {
   margin-top: 0px;
 }
 

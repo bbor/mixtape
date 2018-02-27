@@ -229,7 +229,7 @@ define(['jquery', 'hoverDelay'], function($) {
     site_controls.glow_heading();
     site_controls.expand_heading();
 
-    $(document).on('click', '.expandable-header', site_controls.toggle_expander)
+    $(document).on('click', '.expandable-header.active', site_controls.toggle_expander)
   });
 
   return site_controls;
