@@ -24,9 +24,7 @@ define(['jquery','jstree','scrollTo'], function($) {
   $(document).ready(function () {
     $('#toc').jstree(jstree_config)
     .on('loaded.jstree', function(e, data) {
-      var uid;
-      if (!!location.hash) { uid = 'toc_' + location.hash.substr(1); }
-      else { uid = 'toc_' + basename(location.pathname); }
+      var uid = 'toc_' + basename(location.pathname);
       require(['toc/data/' + uid], function(tocdata) {
         function unfold(ancestry, index) {
           if (index < ancestry.length)
@@ -34,17 +32,26 @@ define(['jquery','jstree','scrollTo'], function($) {
             data.instance.open_node(ancestry[index], function() { unfold(ancestry, index + 1); }, false);
           } else {
             // select the last ancestry node
-            var node = data.instance.get_node(ancestry[ancestry.length - 1], true);
-            if (node) {
-              data.instance.select_node(node, true);
-              data.instance.is_unfolding = false;
-              $('#toc').trigger('scroll_to_selected', [node]);
+            var nodename = ancestry[ancestry.length - 1];
+            if (!!location.hash) {
+              nodename = 'toc_' + location.hash.replace('#','');
+              console.log(nodename);
             }
+            data.instance.is_unfolding = false;
+            $('#toc').trigger('unfold_complete', [nodename]);
           }
         }
         data.instance.is_unfolding = true;
         unfold(tocdata.ancestry, 0);
       })
+    })
+    .on('unfold_complete', function(e, nodename) {
+      var node = $.jstree.reference('#toc').get_node(nodename);
+      if (node)
+      {
+        $.jstree.reference('#toc').select_node(node, true);
+        $('#toc').trigger('scroll_to_selected', [nodename]);
+      }
     })
     .on('changed.jstree', function(e, data) {
       if (data.node.original && data.node.original.target)
@@ -66,32 +73,32 @@ define(['jquery','jstree','scrollTo'], function($) {
         }
       }
     })
-  })
-  .on('scroll_to_selected', function(e, node) {
-    if (!node) return;
-    // we have to temporarily make parents visible before syncing
-    var p = $('#control-panel').css('display');
-    var d = $('#control-toc').css('display');
-    $('#control-panel').css('display','block');
-    $('#control-toc').css('display','block');
-    $('#control-toc').scrollTo( node, {
-      'duration':0,
-      'axis':'y',
-      'offset':{'top':-150},
-      onAfter:function() { 
-        // return parents back to their previous state
-        $('#control-panel').css('display',p);
-        $('#control-toc').css('display',d); 
-      } 
+    .on('scroll_to_selected', function(e, nodename) {
+      if (!nodename) return;
+      // we have to temporarily make parents visible before syncing
+      var p = $('#control-panel').css('display');
+      var d = $('#control-toc').css('display');
+      $('#control-panel').css('display','block');
+      $('#control-toc').css('display','block');
+      $('#control-toc').scrollTo( '#' + nodename, {
+        'duration':0,
+        'axis':'y',
+        'offset':{'top':-150},
+        onAfter:function() {
+          // return parents back to their previous state
+          $('#control-panel').css('display',p);
+          $('#control-toc').css('display',d);
+        }
+      });
+    });
+    $(window).on('hashchange', function(e) {
+      if (!!location.hash) {
+        $.jstree.reference('#toc').deselect_all(true);
+        var uid = 'toc_' + location.hash.substr(1);
+        var node = $.jstree.reference('#toc').get_node(uid, true);
+        $.jstree.reference('#toc').select_node(node, true);
+        $('#toc').trigger('scroll_to_selected', [uid]);
+      }
     });
   });
-  $(window).on('hashchange', function() {
-    if (!!location.hash) {
-      $.jstree.reference('#toc').deselect_all(true);
-      var uid = 'toc_' + location.hash.substr(1);
-      var node = $.jstree.reference('#toc').get_node(uid, true);
-      $.jstree.reference('#toc').select_node(node, true);
-      $('#toc').trigger('scroll_to_selected', [node]);
-    }
-  })
 });
