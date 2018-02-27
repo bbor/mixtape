@@ -1,17 +1,19 @@
-<div class='expandable-header {{#if content_html}}active{{/if}}' id='{{uid}}-expand'>
+<div class='expandable-header {{#if content}}active{{/if}}' id='{{uid}}-expand'>
 <div class="heading">
     <h{{heading_level}}>
         <a name="{{uid}}" id="{{uid}}"></a>
-        {{#if content_html}}<i class='expandable-icon fas fa-caret-right' id="{{uid}}-expand-icon"></i>{{/if}}
+        {{#if content}}<i class='expandable-icon fas fa-caret-right' id="{{uid}}-expand-icon"></i>{{/if}}
         <div class="permalink"><a href="#{{uid}}" class="permalink fas fa-link"></a></div>
-        {{{content_title_html}}}
+        {{md content_title}}
     </h{{heading_level}}>
 </div>
-{{summary content_summary_html heading_level}}
+{{#if content_summary}}
+{{summary_open heading_level}}{{md content_summary}}{{summary_close}}
+{{/if}}
 </div>
-{{#if content_html}}
+{{#if content}}
 <div class='expandable-content' id='{{uid}}-expand-content'>
-{{{content_html}}}
-{{print_children heading_level}}
+{{md content}}
 </div>
 {{/if}}
+{{print_children heading_level}}

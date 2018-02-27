@@ -1,4 +1,10 @@
-{{heading content_title_html uid heading_level}}
-{{summary content_summary_html heading_level}}
-{{{content_html}}}
+{{#if content_title}}
+{{heading_open uid heading_level}}{{md content_title}}{{heading_close}}
+{{/if}}
+{{#if content_summary}}
+{{summary_open heading_level}}{{md content_summary}}{{summary_close}}
+{{/if}}
+{{#if content}}
+{{md content}}
+{{/if}}
 {{print_children heading_level}}
