@@ -264,6 +264,14 @@ a code:hover {
   background-color: #fcfcfc;
 }
 
+.footer a {
+  color:inherit;
+}
+
+.footer a:hover {
+  text-decoration:underline;
+}
+
 #control-panel {
   font-family: Merriweather;
   font-size: smaller;
