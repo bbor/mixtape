@@ -33,7 +33,7 @@ define(['jquery','jstree','scrollTo'], function($) {
           } else {
             // select the last ancestry node
             var nodename = ancestry[ancestry.length - 1];
-            if (!!location.hash) {
+            if (location.hash) {
               var hashname = 'toc_' + location.hash.replace('#','');
               var node = $.jstree.reference('#toc').get_node(hashname, true);
               if (node.length) nodename = hashname;
@@ -93,7 +93,7 @@ define(['jquery','jstree','scrollTo'], function($) {
       });
     });
     $(window).on('hashchange', function(e) {
-      if (!!location.hash) {
+      if (location.hash) {
         $.jstree.reference('#toc').deselect_all(true);
         var uid = 'toc_' + location.hash.substr(1);
         var node = $.jstree.reference('#toc').get_node(uid, true);

@@ -166,7 +166,7 @@ define(['jquery', 'hoverDelay'], function($) {
 
   site_controls.glow_heading = function() {
     var anchor = location.hash.replace(/#/, '') || location.pathname.replace(/^.*\//,'').replace(/\.html?/,'');
-    if (!!anchor)
+    if (anchor)
     {
       $('a[name=' + anchor + ']').closest('h1,h2,h3,h4,h5,h6,h7').addClass('glow').delay(2000).queue(function(next){
         $(this).removeClass('glow');next();
@@ -176,7 +176,7 @@ define(['jquery', 'hoverDelay'], function($) {
 
   site_controls.expand_heading = function() {
     var anchor = location.hash.replace(/#/, '') || location.pathname.replace(/^.*\//,'').replace(/\.html?/,'');
-    if (!!anchor)
+    if (anchor)
     {
       $('#' + anchor).parents('.expandable-content').get().reverse().forEach(function(item) {
         $(item).show();
@@ -184,7 +184,7 @@ define(['jquery', 'hoverDelay'], function($) {
       });
       $('#' + anchor + '-expand-content').show();
       $('#' + anchor + '-expand-icon').addClass('icon-rotated');
-      $(window).scrollTo($('#' + anchor));
+      if (location.hash) $(window).scrollTo($('#' + anchor));
     }
   }
 
