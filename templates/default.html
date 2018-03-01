@@ -1,5 +1,5 @@
 {{#if content_title}}
-{{heading_open uid heading_level}}{{md content_title}}{{permalink uid}}{{heading_close heading_level}}
+{{heading_open uid heading_level}}{{#if icon}}{{heading_icon icon}}{{/if}}{{md content_title}}{{permalink uid}}{{heading_close heading_level}}
 {{/if}}
 {{#if content_summary}}
 {{summary_open heading_level}}{{md content_summary}}{{summary_close}}
