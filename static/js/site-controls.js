@@ -174,6 +174,11 @@ define(['jquery', 'hoverDelay'], function($) {
     }
   }
 
+  site_controls.follow_stub = function(e) {
+    var target = $(this).attr('data-target');
+    window.location = target;
+  }
+
   site_controls.expand_heading = function() {
     var anchor = location.hash.replace(/#/, '') || location.pathname.replace(/^.*\//,'').replace(/\.html?/,'');
     if (anchor)
@@ -229,7 +234,8 @@ define(['jquery', 'hoverDelay'], function($) {
     site_controls.glow_heading();
     site_controls.expand_heading();
 
-    $(document).on('click', '.expandable-header.active', site_controls.toggle_expander)
+    $(document).on('click', '.expandable-header.active', site_controls.toggle_expander);
+    $(document).on('click', '.stub', site_controls.follow_stub);
   });
 
   return site_controls;

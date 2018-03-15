@@ -303,21 +303,30 @@ a code:hover {
 
 .expandable-icon {
   width:0.75em;
-  transition: transform 0.4s ease;  
+  transition: transform 0.4s ease;
   transform-origin:center left;
   padding-right:0.25em;
 }
 
 .icon-rotated {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  transition: transform 0.4s ease;  
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transition: transform 0.4s ease;
   transform-origin:center left;
 }
 
 .heading p {
   display:inline;
+}
+
+.stub {
+  cursor: pointer;
+}
+
+.stub:hover h1, .stub:hover h2, .stub:hover h3, .stub:hover h4, .stub:hover h5, .stub:hover h6 {
+  color: deepskyblue;
+  transition-duration: 0.4s;
 }
